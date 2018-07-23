@@ -26,4 +26,11 @@ describe('Deck', function(){
       expect(containsAll).toBe(true);
     });
   });
+
+  describe('#shuffle', function(){
+    it('shuffles the cards into a random order', function(){
+      deck.shuffle();
+      expect(deck.cards.slice(0, 13).join()).not.toEqual('2s,3s,4s,5s,6s,7s,8s,9s,Ts,Js,Qs,Ks,As')
+    });
+  });
 });
