@@ -1,16 +1,19 @@
-function Deck(){
+function Pack(deckCount = 1){
+  this.deckCount = deckCount
   this.cards = []
   this.suits = ['s', 'h', 'd', 'c']
   this.ranks = [2, 3, 4, 5, 6, 7, 8, 9, 'T', 'J', 'Q', 'K', 'A']
-  for (var i = 0; i < this.suits.length; i++) {
-    for (var x = 0; x < this.ranks.length; x++) {
-      this.cards.push(this.ranks[x] + this.suits[i])
+  for (var counter = 0; counter < this.deckCount; counter++) {
+    for (var i = 0; i < this.suits.length; i++) {
+      for (var x = 0; x < this.ranks.length; x++) {
+        this.cards.push(this.ranks[x] + this.suits[i])
+      }
     }
   }
 }
 
 // Durstenfeld Shuffle
-Deck.prototype.shuffle = function () {
+Pack.prototype.shuffle = function () {
   for (var i = this.cards.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = this.cards[i];
