@@ -6,6 +6,13 @@ function Game(deckCount, playerCount, pack = new Pack(deckCount)){
   for (var i = 0; i <= playerCount; i++) {
     this.hands.push([])
   }
+  this.cardValues = {
+    'A': 1,
+    'K': 10,
+    'Q': 10,
+    'J': 10,
+    'T': 10
+  };
 }
 
 Game.prototype.deal = function () {
@@ -15,5 +22,16 @@ Game.prototype.deal = function () {
       this.hands[i].push(this.pack.cards.pop());
     }
   }
+};
 
+Game.prototype.handScore = function (hand) {
+  var score = 0
+  for (var i = 0; i < hand.length; i++) {
+    if (isNaN(hand[i][0])) {
+      score += this.cardValues[hand[i][0]]
+    } else {
+      score += parseInt(hand[i][0])
+    }
+  }
+  return score;
 };

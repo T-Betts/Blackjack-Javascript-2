@@ -6,7 +6,7 @@ function Pack(deckCount = 1){
   for (var counter = 0; counter < this.deckCount; counter++) {
     for (var i = 0; i < this.suits.length; i++) {
       for (var x = 0; x < this.ranks.length; x++) {
-        this.cards.push(this.ranks[x] + this.suits[i])
+        this.cards.push(this.ranks[x] + this.suits[i]);
       }
     }
   }
