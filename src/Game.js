@@ -33,5 +33,8 @@ Game.prototype.handScore = function (hand) {
       score += parseInt(hand[i][0])
     }
   }
+  if (score + 10 <=21 && (hand[0][0] === 'A' || hand[1][0] === 'A')) {
+    score += 10
+  }
   return score;
 };

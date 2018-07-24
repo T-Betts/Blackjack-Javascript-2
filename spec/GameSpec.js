@@ -16,5 +16,11 @@ describe('Game', function(){
       game.hands[0].push('5s', 'Ks', 'Ac');
       expect(game.handScore(game.hands[0])).toEqual(16);
     });
+
+    it('should return hard value if hand containing an ace has a hard value less than or equal to 21', function(){
+      game = new Game(1, 1)
+      game.hands[0].push('Ks', 'Ac');
+      expect(game.handScore(game.hands[0])).toEqual(21)
+    });
   });
 });
