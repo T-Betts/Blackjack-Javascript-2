@@ -16,19 +16,19 @@ describe('Pack', function(){
 
   describe('New Pack', function(){
     it('has card array containing 52 elements', function(){
-      expect(pack.cards.length).toEqual(52);
+      expect(pack.remainingCards().length).toEqual(52);
     });
 
     it('contains 2-Ace of each suit', function(){
       var containsAll = testPack.every(function(val) {
-        return pack.cards.indexOf(val) !== -1;
+        return pack.remainingCards().indexOf(val) !== -1;
       });
       expect(containsAll).toBe(true);
     });
 
     it('can contain multiple 52-card decks', function(){
       fiveDeckPack = new Pack(5);
-      expect(fiveDeckPack.cards.length).toEqual(260);
+      expect(fiveDeckPack.remainingCards().length).toEqual(260);
     });
   });
 
@@ -36,7 +36,7 @@ describe('Pack', function(){
   describe('#shuffle', function(){
     it('shuffles the cards into a random order', function(){
       pack.shuffle();
-      expect(pack.cards.slice(0, 13).join()).not.toEqual('2s,3s,4s,5s,6s,7s,8s,9s,Ts,Js,Qs,Ks,As');
+      expect(pack.remainingCards().slice(0, 13).join()).not.toEqual('2s,3s,4s,5s,6s,7s,8s,9s,Ts,Js,Qs,Ks,As');
     });
   });
 });

@@ -12,6 +12,10 @@ function Pack(deckCount = 1){
   }
 }
 
+Pack.prototype.remainingCards = function () {
+  return this.cards
+};
+
 // Durstenfeld Shuffle
 Pack.prototype.shuffle = function () {
   for (var i = this.cards.length - 1; i > 0; i--) {
