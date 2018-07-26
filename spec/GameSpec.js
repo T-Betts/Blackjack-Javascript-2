@@ -65,4 +65,11 @@ describe('Game', function(){
       expect(onePlayerOneDeckGame.hands[0].length).toEqual(3);
     });
   });
+
+  describe('#stand', function(){
+    it('should switch currentHand to next in the hand array', function(){
+      onePlayerOneDeckGame.stand();
+      expect(onePlayerOneDeckGame.currentHand).toEqual(1);
+    });
+  });
 });
