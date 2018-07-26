@@ -1,6 +1,6 @@
 describe('Game', function(){
   let singleDeckPackDouble;
-  let onePlayerGame;
+  let onePlayerOneDeckGame;
 
   beforeEach(function(){
     var testPack = [];
@@ -14,7 +14,7 @@ describe('Game', function(){
     singleDeckPackDouble = jasmine.createSpyObj('singleDeckPackDouble',['shuffle', 'remainingCards']);
     singleDeckPackDouble.shuffle.and.returnValue(testPack);
     singleDeckPackDouble.remainingCards.and.returnValue(testPack);
-    onePlayerGame = new Game(1, 1, singleDeckPackDouble);
+    onePlayerOneDeckGame = new Game(1, 1, singleDeckPackDouble);
   });
 
   describe('#deal', function(){
@@ -30,31 +30,39 @@ describe('Game', function(){
 
   describe('#handScore', function(){
     it('should return soft value if hand containing an ace has a hard value more than 21', function(){
-      onePlayerGame.hands[0].push('5s', 'Ks', 'Ac');
-      expect(onePlayerGame.handScore(onePlayerGame.hands[0])).toEqual(16);
+      onePlayerOneDeckGame.hands[0].push('5s', 'Ks', 'Ac');
+      expect(onePlayerOneDeckGame.handScore(onePlayerOneDeckGame.hands[0])).toEqual(16);
     });
 
     it('should return hard value if hand containing an ace has a hard value less than or equal to 21', function(){
-      onePlayerGame.hands[0].push('Ks', 'Ac');
-      expect(onePlayerGame.handScore(onePlayerGame.hands[0])).toEqual(21)
+      onePlayerOneDeckGame.hands[0].push('Ks', 'Ac');
+      expect(onePlayerOneDeckGame.handScore(onePlayerOneDeckGame.hands[0])).toEqual(21)
     });
   });
 
   describe('#handStatus', function(){
     it('should return "Blackjack" if initial dealt hand score equals 21', function(){
-      onePlayerGame.hands[0].push('As', 'Ks');
-      expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Blackjack');
+      onePlayerOneDeckGame.hands[0].push('As', 'Ks');
+      expect(onePlayerOneDeckGame.handStatus(onePlayerOneDeckGame.hands[0])).toEqual('Blackjack');
     });
 
     it('should return "Bust" if the hand score is greater than 21', function(){
-      onePlayerGame.hands[0].push('9s', 'Ks');
-      onePlayerGame.hands[0].push('3d');
-      expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Bust');
+      onePlayerOneDeckGame.hands[0].push('9s', 'Ks');
+      onePlayerOneDeckGame.hands[0].push('3d');
+      expect(onePlayerOneDeckGame.handStatus(onePlayerOneDeckGame.hands[0])).toEqual('Bust');
     });
 
     it('should return "Live" if initial dealt hand is not blackjack', function(){
-      onePlayerGame.hands[0].push('5s', 'Ks');
-      expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Live');
+      onePlayerOneDeckGame.hands[0].push('5s', 'Ks');
+      expect(onePlayerOneDeckGame.handStatus(onePlayerOneDeckGame.hands[0])).toEqual('Live');
+    });
+  });
+
+  describe('#hit', function(){
+    it('should add a card to the currentHand', function(){
+      onePlayerOneDeckGame.hands[0].push('3h', '4d')
+      onePlayerOneDeckGame.hit();
+      expect(onePlayerOneDeckGame.hands[0].length).toEqual(3);
     });
   });
 });

@@ -1,4 +1,5 @@
 function Game(deckCount, playerCount, pack = new Pack(deckCount)){
+  this.currentHand = 0
   this.hands = []
   this.playerCount = playerCount
   this.deckCount = deckCount
@@ -47,4 +48,8 @@ Game.prototype.handStatus = function (hand) {
   } else {
     return 'Live'
   }
+};
+
+Game.prototype.hit = function () {
+  this.hands[this.currentHand].push(this.pack.remainingCards().pop());
 };
