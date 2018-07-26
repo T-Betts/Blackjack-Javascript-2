@@ -60,7 +60,7 @@ describe('Game', function(){
 
   describe('#hit', function(){
     it('should add a card to the currentHand', function(){
-      onePlayerOneDeckGame.hands[0].push('3h', '4d')
+      onePlayerOneDeckGame.hands[0].push('3h', '4d');
       onePlayerOneDeckGame.hit();
       expect(onePlayerOneDeckGame.hands[0].length).toEqual(3);
     });
@@ -70,6 +70,11 @@ describe('Game', function(){
     it('should switch currentHand to next in the hand array', function(){
       onePlayerOneDeckGame.stand();
       expect(onePlayerOneDeckGame.currentHand).toEqual(1);
+    });
+
+    it('should call result if the currentHand is the dealers', function(){
+      onePlayerOneDeckGame.stand();
+      expect(onePlayerOneDeckGame.stand()).toEqual('Result Called')
     });
   });
 });
