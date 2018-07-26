@@ -51,5 +51,10 @@ describe('Game', function(){
       onePlayerGame.hands[0].push('3d');
       expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Bust');
     });
+
+    it('should return "Live" if initial dealt hand is not blackjack', function(){
+      onePlayerGame.hands[0].push('5s', 'Ks');
+      expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Live');
+    });
   });
 });

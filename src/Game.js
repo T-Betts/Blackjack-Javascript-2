@@ -44,5 +44,7 @@ Game.prototype.handStatus = function (hand) {
     return 'Blackjack'
   } else if (this.handScore(hand) > 21) {
     return 'Bust'
-  } 
+  } else {
+    return 'Live'
+  }
 };
