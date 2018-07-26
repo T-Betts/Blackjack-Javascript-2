@@ -14,7 +14,7 @@ describe('Pack', function(){
     };
   });
 
-  describe('New Pack', function(){
+  describe('#remainingCards', function(){
     it('has card array containing 52 elements', function(){
       expect(pack.remainingCards().length).toEqual(52);
     });

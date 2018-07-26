@@ -38,3 +38,9 @@ Game.prototype.handScore = function (hand) {
   }
   return score;
 };
+
+Game.prototype.handStatus = function (hand) {
+  if (this.handScore(hand) === 21 && hand.length === 2) {
+    return 'Blackjack'
+  }
+};

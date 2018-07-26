@@ -21,7 +21,6 @@ describe('Game', function(){
     it('deals two cards to every player and the dealer', function(){
       fourPlayerGame = new Game(1, 4, singleDeckPackDouble);
       fourPlayerGame.deal();
-      console.log(fourPlayerGame.hands[0])
       function hasTwoCards(hand) {
         return hand.length === 2;
       }
@@ -29,7 +28,7 @@ describe('Game', function(){
     });
   });
 
-  describe('handScore', function(){
+  describe('#handScore', function(){
     it('should return soft value if hand containing an ace has a hard value more than 21', function(){
       onePlayerGame.hands[0].push('5s', 'Ks', 'Ac');
       expect(onePlayerGame.handScore(onePlayerGame.hands[0])).toEqual(16);
@@ -38,6 +37,13 @@ describe('Game', function(){
     it('should return hard value if hand containing an ace has a hard value less than or equal to 21', function(){
       onePlayerGame.hands[0].push('Ks', 'Ac');
       expect(onePlayerGame.handScore(onePlayerGame.hands[0])).toEqual(21)
+    });
+  });
+
+  describe('#handStatus', function(){
+    it('should return "Blackjack" if initial dealt hand score equals 21', function(){
+      onePlayerGame.hands[0].push('As', 'Ks');
+      expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Blackjack');
     });
   });
 });
