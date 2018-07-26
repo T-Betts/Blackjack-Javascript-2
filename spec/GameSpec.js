@@ -45,5 +45,11 @@ describe('Game', function(){
       onePlayerGame.hands[0].push('As', 'Ks');
       expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Blackjack');
     });
+
+    it('should return "Bust" if the hand score is greater than 21', function(){
+      onePlayerGame.hands[0].push('9s', 'Ks');
+      onePlayerGame.hands[0].push('3d');
+      expect(onePlayerGame.handStatus(onePlayerGame.hands[0])).toEqual('Bust');
+    });
   });
 });

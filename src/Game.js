@@ -42,5 +42,7 @@ Game.prototype.handScore = function (hand) {
 Game.prototype.handStatus = function (hand) {
   if (this.handScore(hand) === 21 && hand.length === 2) {
     return 'Blackjack'
-  }
+  } else if (this.handScore(hand) > 21) {
+    return 'Bust'
+  } 
 };
