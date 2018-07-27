@@ -77,4 +77,12 @@ describe('Game', function(){
       expect(onePlayerOneDeckGame.stand()).toEqual('Result Called')
     });
   });
+
+  describe('#result', function(){
+    it('should return "Player Wins!" if player makes blackjack and dealer does not', function(){
+      onePlayerOneDeckGame.hands[0].push('As', 'Kd')
+      onePlayerOneDeckGame.hands[1].push('9s', 'Kh', '2c')
+      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!')
+    });
+  });
 });

@@ -61,3 +61,9 @@ Game.prototype.stand = function () {
     this.currentHand++
   }
 };
+
+Game.prototype.result = function (hand) {
+  if (this.handStatus(hand) === 'Blackjack' && this.handStatus(this.hands[this.hands.length - 1]) !== 'Blackjack') {
+    return 'Player Wins!'
+  }
+};
