@@ -129,10 +129,17 @@ describe('Game', function(){
   });
 
   describe('#split', function(){
-    it('it should split a non-ace paired hand into two new hands and add them to hands array', function(){
+    // it('it should split a non-ace paired hand into two new hands and add them to hands array', function(){
+    //   onePlayerOneDeckGame.hands[0].push('6c', '6s');
+    //   onePlayerOneDeckGame.split(onePlayerOneDeckGame.hands[0], 0)
+    //   expect(onePlayerOneDeckGame.hands.length).toEqual(3)
+    // });
+
+    it('should deal one card to each new hand', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '6s');
       onePlayerOneDeckGame.split(onePlayerOneDeckGame.hands[0], 0)
-      expect(onePlayerOneDeckGame.hands.length).toEqual(3)
+      expect(onePlayerOneDeckGame.hands[0].length).toEqual(2)
+      expect(onePlayerOneDeckGame.hands[1].length).toEqual(2)
     });
   });
 });
