@@ -77,3 +77,13 @@ Game.prototype.result = function (hand) {
     return 'Push!'
   }
 };
+
+Game.prototype.split = function (hand, handIndex) {
+    var oneCardHands = [];
+    for (var index = 0; index < hand.length; index += 1) {
+        card = hand.slice(index, index + 1);
+        oneCardHands.push(card);
+    }
+    this.hands[handIndex] = oneCardHands[0]
+    this.hands.splice(handIndex + 1, 0, oneCardHands[1])
+};

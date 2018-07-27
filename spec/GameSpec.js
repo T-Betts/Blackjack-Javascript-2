@@ -127,4 +127,12 @@ describe('Game', function(){
       expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Push!');
     });
   });
+
+  describe('#split', function(){
+    it('it should split a non-ace paired hand into two new hands and add them to hands array', function(){
+      onePlayerOneDeckGame.hands[0].push('6c', '6s');
+      onePlayerOneDeckGame.split(onePlayerOneDeckGame.hands[0], 0)
+      expect(onePlayerOneDeckGame.hands.length).toEqual(3)
+    });
+  });
 });
