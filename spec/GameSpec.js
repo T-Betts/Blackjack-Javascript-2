@@ -114,5 +114,17 @@ describe('Game', function(){
       onePlayerOneDeckGame.hands[1].push('3d', 'Kc');
       expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
     });
+
+    it('should return "Push!" if both hands are blackjack', function(){
+      onePlayerOneDeckGame.hands[0].push('Kd', 'As');
+      onePlayerOneDeckGame.hands[1].push('Ad', 'Jc');
+      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Push!');
+    });
+
+    it('should return "Push!" if both handscores are equal', function(){
+      onePlayerOneDeckGame.hands[0].push('6c', '9s');
+      onePlayerOneDeckGame.hands[1].push('Ts', '5c');
+      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Push!');
+    });
   });
 });

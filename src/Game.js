@@ -72,5 +72,8 @@ Game.prototype.result = function (hand) {
   this.handStatus(hand) === 'Bust' ||
   this.handScore(this.dealerHand) > this.handScore(hand) && this.handStatus(this.dealerHand) === 'Live') {
     return 'Dealer Wins!'
+  } else if (this.handStatus(this.dealerHand) === 'Blackjack' && this.handStatus(hand) === 'Blackjack' ||
+  this.handScore(hand) === this.handScore(this.dealerHand)) {
+    return 'Push!'
   }
 };
