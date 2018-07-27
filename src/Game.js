@@ -7,6 +7,7 @@ function Game(deckCount, playerCount, pack = new Pack(deckCount)){
   for (var i = 0; i <= playerCount; i++) {
     this.hands.push([])
   }
+  this.dealerHand = this.hands[this.hands.length - 1]
   this.cardValues = {
     'A': 1,
     'K': 10,
@@ -63,7 +64,8 @@ Game.prototype.stand = function () {
 };
 
 Game.prototype.result = function (hand) {
-  if (this.handStatus(hand) === 'Blackjack' && this.handStatus(this.hands[this.hands.length - 1]) !== 'Blackjack') {
+  if (this.handStatus(hand) === 'Blackjack' && this.handStatus(this.dealerHand) !== 'Blackjack' ||
+     (this.handScore(hand) > this.handScore(this.dealerHand) && this.handStatus(hand) === 'Live')) {
     return 'Player Wins!'
   }
 };
