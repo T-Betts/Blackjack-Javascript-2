@@ -90,5 +90,11 @@ describe('Game', function(){
       onePlayerOneDeckGame.hands[1].push('7s', 'Kh');
       expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
     });
+
+    it('should return "Player Wins!" if the player hand is live and the dealer hand is bust', function(){
+      onePlayerOneDeckGame.hands[0].push('Ks', '9d');
+      onePlayerOneDeckGame.hands[1].push('7s', 'Kh', '5d');
+      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
+    });
   });
 });
