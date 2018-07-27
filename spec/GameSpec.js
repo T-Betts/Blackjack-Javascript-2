@@ -96,5 +96,23 @@ describe('Game', function(){
       onePlayerOneDeckGame.hands[1].push('7s', 'Kh', '5d');
       expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
     });
+
+    it('should return "Dealer Wins!" if dealer makes blackjack and player does not', function(){
+      onePlayerOneDeckGame.hands[0].push('6d', 'Ts');
+      onePlayerOneDeckGame.hands[1].push('As', 'Kh');
+      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
+    });
+
+    it('should return "Dealer Wins!" if the player goes bust', function(){
+      onePlayerOneDeckGame.hands[0].push('Kd', 'Kc', '2s');
+      onePlayerOneDeckGame.hands[1].push('3d', '6c');
+      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
+    });
+
+    it('should return "Dealer Wins!" if a live dealer hand scores more than a live player hand', function(){
+      onePlayerOneDeckGame.hands[0].push('Kd', '2s');
+      onePlayerOneDeckGame.hands[1].push('3d', 'Kc');
+      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
+    });
   });
 });
