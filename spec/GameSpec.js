@@ -157,4 +157,16 @@ describe('Game', function(){
       expect(onePlayerOneDeckGame.hands[1].length).toEqual(2)
     });
   });
+
+  describe('#splittable', function(){
+    it('should return true if the hand can be split', function(){
+      onePlayerOneDeckGame.hands[0].push('6c', '6s');
+      expect(onePlayerOneDeckGame.splittable(onePlayerOneDeckGame.hands[0])).toBe(true)
+    })
+
+    it('should return false if the hand cannot be split', function(){
+      onePlayerOneDeckGame.hands[0].push('As', '5h');
+      expect(onePlayerOneDeckGame.splittable(onePlayerOneDeckGame.hands[0])).toBe(false)
+    });
+  });
 });

@@ -99,3 +99,7 @@ Game.prototype.split = function (hand, handIndex) {
   this.hands[handIndex].push(this.pack.remainingCards().pop());
   this.hands[handIndex + 1].push(this.pack.remainingCards().pop());
 };
+
+Game.prototype.splittable = function (hand) {
+  return hand[0][0] === hand[1][0]
+};
