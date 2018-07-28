@@ -73,7 +73,7 @@ Game.prototype.stand = function () {
   }
 };
 
-Game.prototype.result = function (hand) {
+Game.prototype.handResult = function (hand) {
   if (this.handStatus(hand) === 'Blackjack' && this.handStatus(this.dealerHand) !== 'Blackjack' ||
   this.handScore(hand) > this.handScore(this.dealerHand) && this.handStatus(hand) === 'Live' ||
   this.handStatus(hand) === 'Live' && this.handStatus(this.dealerHand) === 'Bust') {

@@ -87,59 +87,59 @@ describe('Game', function(){
       expect(onePlayerOneDeckGame.currentHand).toEqual(1);
     });
 
-    it('should call result if the currentHand is the dealers', function(){
+    it('should call endGame() if the currentHand is the dealers', function(){
       onePlayerOneDeckGame.stand();
       expect(onePlayerOneDeckGame.stand()).toEqual('Result Called');
     });
   });
 
-  describe('#result', function(){
+  describe('#handResult', function(){
     it('should return "Player Wins!" if player makes blackjack and dealer does not', function(){
       onePlayerOneDeckGame.hands[0].push('As', 'Kd');
       onePlayerOneDeckGame.hands[1].push('9s', 'Kh', '2c');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
     });
 
     it('should return "Player Wins!" if the player live hand scores more than dealer live hand', function(){
       onePlayerOneDeckGame.hands[0].push('Ks', '9d');
       onePlayerOneDeckGame.hands[1].push('7s', 'Kh');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
     });
 
     it('should return "Player Wins!" if the player hand is live and the dealer hand is bust', function(){
       onePlayerOneDeckGame.hands[0].push('Ks', '9d');
       onePlayerOneDeckGame.hands[1].push('7s', 'Kh', '5d');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Player Wins!');
     });
 
     it('should return "Dealer Wins!" if dealer makes blackjack and player does not', function(){
       onePlayerOneDeckGame.hands[0].push('6d', 'Ts');
       onePlayerOneDeckGame.hands[1].push('As', 'Kh');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
     });
 
     it('should return "Dealer Wins!" if the player goes bust', function(){
       onePlayerOneDeckGame.hands[0].push('Kd', 'Kc', '2s');
       onePlayerOneDeckGame.hands[1].push('3d', '6c');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
     });
 
     it('should return "Dealer Wins!" if a live dealer hand scores more than a live player hand', function(){
       onePlayerOneDeckGame.hands[0].push('Kd', '2s');
       onePlayerOneDeckGame.hands[1].push('3d', 'Kc');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Dealer Wins!');
     });
 
     it('should return "Push!" if both hands are blackjack', function(){
       onePlayerOneDeckGame.hands[0].push('Kd', 'As');
       onePlayerOneDeckGame.hands[1].push('Ad', 'Jc');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Push!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Push!');
     });
 
     it('should return "Push!" if both handscores are equal', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '9s');
       onePlayerOneDeckGame.hands[1].push('Ts', '5c');
-      expect(onePlayerOneDeckGame.result(onePlayerOneDeckGame.hands[0])).toEqual('Push!');
+      expect(onePlayerOneDeckGame.handResult(onePlayerOneDeckGame.hands[0])).toEqual('Push!');
     });
   });
 
