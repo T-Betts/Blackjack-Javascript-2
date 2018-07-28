@@ -18,10 +18,14 @@ function Game(deckCount, playerCount, pack = new Pack(deckCount)){
 }
 
 Game.prototype.deal = function () {
-  this.pack.shuffle()
-  for (var round = 1; round <= 2; round++) {
-    for (var i = 0; i < this.hands.length; i++) {
-      this.hands[i].push(this.pack.remainingCards().pop());
+  if (this.dealerHand.length !== 0) {
+    throw 'Cards already dealt'
+  } else {
+    this.pack.shuffle()
+    for (var round = 1; round <= 2; round++) {
+      for (var i = 0; i < this.hands.length; i++) {
+        this.hands[i].push(this.pack.remainingCards().pop());
+      }
     }
   }
 };

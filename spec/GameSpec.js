@@ -26,6 +26,11 @@ describe('Game', function(){
       }
       expect(fourPlayerGame.hands.every(hasTwoCards)).toBe(true);
     });
+
+    it('can only be called once per game', function(){
+      onePlayerOneDeckGame.deal();
+      expect( function(){ onePlayerOneDeckGame.deal() } ).toThrow('Cards already dealt');
+    });
   });
 
   describe('#handScore', function(){
@@ -129,7 +134,7 @@ describe('Game', function(){
   });
 
   describe('#split', function(){
-    it('it should split a non-ace paired hand into two new hands and add them to hands array', function(){
+    it('it should split a hand into two new hands and add them to hands array', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '6s');
       onePlayerOneDeckGame.split(onePlayerOneDeckGame.hands[0], 0)
       expect(onePlayerOneDeckGame.hands.length).toEqual(3)
