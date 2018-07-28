@@ -69,6 +69,11 @@ describe('Game', function(){
       onePlayerOneDeckGame.hit();
       expect(onePlayerOneDeckGame.hands[0].length).toEqual(3);
     });
+
+    it('should throw error if called on a hand that is bust', function(){
+      onePlayerOneDeckGame.hands[0].push('7h', 'Ks', 'Td');
+      expect( function(){ onePlayerOneDeckGame.hit() } ).toThrow('Hand is bust')
+    });
   });
 
   describe('#stand', function(){
