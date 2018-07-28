@@ -68,7 +68,7 @@ Game.prototype.hit = function () {
 
 Game.prototype.stand = function () {
   if (this.currentHand === this.hands.length - 1) {
-    return 'Result Called'
+    return this.endGame();
   } else {
     this.currentHand++
   }

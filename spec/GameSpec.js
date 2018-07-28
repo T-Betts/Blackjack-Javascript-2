@@ -88,8 +88,10 @@ describe('Game', function(){
     });
 
     it('should call endGame() if the currentHand is the dealers', function(){
+      onePlayerOneDeckGame.hands[0].push('5c', '8d')
+      onePlayerOneDeckGame.hands[1].push('3c', 'Td')
       onePlayerOneDeckGame.stand();
-      expect(onePlayerOneDeckGame.stand()).toEqual('Result Called');
+      expect(onePlayerOneDeckGame.stand()[0]).toEqual('Push!');
     });
   });
 
