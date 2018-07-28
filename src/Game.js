@@ -58,6 +58,8 @@ Game.prototype.handStatus = function (hand) {
 Game.prototype.hit = function () {
   if (this.handScore(this.hands[this.currentHand]) > 21) {
     throw 'Hand is bust'
+  } else if (this.handScore(this.hands[this.currentHand]) === 21) {
+    throw 'Hand score is 21'
   } else {
     this.hands[this.currentHand].push(this.pack.remainingCards().pop());
   }

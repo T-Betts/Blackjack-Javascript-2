@@ -74,6 +74,11 @@ describe('Game', function(){
       onePlayerOneDeckGame.hands[0].push('7h', 'Ks', 'Td');
       expect( function(){ onePlayerOneDeckGame.hit() } ).toThrow('Hand is bust')
     });
+
+    it('should throw error if called on a hand with a score of 21', function(){
+      onePlayerOneDeckGame.hands[0].push('Ah', 'Ks');
+      expect( function(){ onePlayerOneDeckGame.hit() } ).toThrow('Hand score is 21')
+    });
   });
 
   describe('#stand', function(){
