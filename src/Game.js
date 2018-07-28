@@ -1,6 +1,7 @@
 function Game(deckCount, playerCount, pack = new Pack(deckCount)){
   this.currentHand = 0
   this.hands = []
+  this.results = []
   this.playerCount = playerCount
   this.deckCount = deckCount
   this.pack = pack
@@ -108,4 +109,11 @@ Game.prototype.split = function () {
 
 Game.prototype.splittable = function (hand) {
   return hand[0][0] === hand[1][0]
+};
+
+Game.prototype.endGame = function () {
+  for (var i = 0; i < this.hands.length - 1; i++) {
+    this.results.push(this.handResult(this.hands[i]))
+  }
+  return this.results
 };

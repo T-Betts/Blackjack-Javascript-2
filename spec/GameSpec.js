@@ -146,32 +146,42 @@ describe('Game', function(){
   describe('#split', function(){
     it('it should split a hand into two new hands and add them to hands array', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      onePlayerOneDeckGame.split()
-      expect(onePlayerOneDeckGame.hands.length).toEqual(3)
+      onePlayerOneDeckGame.split();
+      expect(onePlayerOneDeckGame.hands.length).toEqual(3);
     });
 
     it('should deal one card to each new hand', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      onePlayerOneDeckGame.split()
-      expect(onePlayerOneDeckGame.hands[0].length).toEqual(2)
-      expect(onePlayerOneDeckGame.hands[1].length).toEqual(2)
+      onePlayerOneDeckGame.split();
+      expect(onePlayerOneDeckGame.hands[0].length).toEqual(2);
+      expect(onePlayerOneDeckGame.hands[1].length).toEqual(2);
     });
 
     it('can only be called on a splittable hand', function(){
       onePlayerOneDeckGame.hands[0].push('Kc', '6s');
-      expect( function(){ onePlayerOneDeckGame.split() } ).toThrow('Cannot split hand')
+      expect( function(){ onePlayerOneDeckGame.split() } ).toThrow('Cannot split hand');
     });
   });
 
   describe('#splittable', function(){
     it('should return true if the hand can be split', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      expect(onePlayerOneDeckGame.splittable(onePlayerOneDeckGame.hands[0])).toBe(true)
+      expect(onePlayerOneDeckGame.splittable(onePlayerOneDeckGame.hands[0])).toBe(true);
     })
 
     it('should return false if the hand cannot be split', function(){
       onePlayerOneDeckGame.hands[0].push('As', '5h');
-      expect(onePlayerOneDeckGame.splittable(onePlayerOneDeckGame.hands[0])).toBe(false)
+      expect(onePlayerOneDeckGame.splittable(onePlayerOneDeckGame.hands[0])).toBe(false);
+    });
+  });
+
+  describe('#endGame', function(){
+    it('should return an array of all non-dealer hand results', function(){
+      game = new Game(1, 2, singleDeckPackDouble)
+      game.hands[0].push('6c', 'Ks');
+      game.hands[1].push('5d', 'Js');
+      game.hands[2].push('3c', '6s');
+      expect(game.endGame().length).toEqual(2)
     });
   });
 });
