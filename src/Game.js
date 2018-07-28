@@ -89,15 +89,19 @@ Game.prototype.result = function (hand) {
 };
 
 Game.prototype.split = function (hand, handIndex) {
-  var oneCardHands = [];
-  for (var index = 0; index < hand.length; index += 1) {
-      card = hand.slice(index, index + 1);
-      oneCardHands.push(card);
+  if (this.splittable(hand)) {
+    var oneCardHands = [];
+    for (var index = 0; index < hand.length; index += 1) {
+        card = hand.slice(index, index + 1);
+        oneCardHands.push(card);
+    }
+    this.hands[handIndex] = oneCardHands[0]
+    this.hands.splice(handIndex + 1, 0, oneCardHands[1])
+    this.hands[handIndex].push(this.pack.remainingCards().pop());
+    this.hands[handIndex + 1].push(this.pack.remainingCards().pop());
+  } else {
+    throw 'Cannot split hand'
   }
-  this.hands[handIndex] = oneCardHands[0]
-  this.hands.splice(handIndex + 1, 0, oneCardHands[1])
-  this.hands[handIndex].push(this.pack.remainingCards().pop());
-  this.hands[handIndex + 1].push(this.pack.remainingCards().pop());
 };
 
 Game.prototype.splittable = function (hand) {
