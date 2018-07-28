@@ -146,20 +146,20 @@ describe('Game', function(){
   describe('#split', function(){
     it('it should split a hand into two new hands and add them to hands array', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      onePlayerOneDeckGame.split(onePlayerOneDeckGame.hands[0], 0)
+      onePlayerOneDeckGame.split()
       expect(onePlayerOneDeckGame.hands.length).toEqual(3)
     });
 
     it('should deal one card to each new hand', function(){
       onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      onePlayerOneDeckGame.split(onePlayerOneDeckGame.hands[0], 0)
+      onePlayerOneDeckGame.split()
       expect(onePlayerOneDeckGame.hands[0].length).toEqual(2)
       expect(onePlayerOneDeckGame.hands[1].length).toEqual(2)
     });
 
     it('can only be called on a splittable hand', function(){
       onePlayerOneDeckGame.hands[0].push('Kc', '6s');
-      expect( function(){ onePlayerOneDeckGame.split(onePlayerOneDeckGame.hands[0], 0) } ).toThrow('Cannot split hand')
+      expect( function(){ onePlayerOneDeckGame.split() } ).toThrow('Cannot split hand')
     });
   });
 

@@ -88,7 +88,9 @@ Game.prototype.result = function (hand) {
   }
 };
 
-Game.prototype.split = function (hand, handIndex) {
+Game.prototype.split = function () {
+  var hand = this.hands[this.currentHand]
+  var handIndex = this.currentHand
   if (this.splittable(hand)) {
     var oneCardHands = [];
     for (var index = 0; index < hand.length; index += 1) {
