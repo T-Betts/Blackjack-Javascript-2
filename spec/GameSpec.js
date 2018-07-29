@@ -84,7 +84,7 @@ describe('Game', function(){
   describe('#stand', function(){
     it('should switch currentHand to next in the hand array', function(){
       onePlayerOneDeckGame.stand();
-      expect(onePlayerOneDeckGame.currentHand).toEqual(1);
+      expect(onePlayerOneDeckGame.currentHandIndex).toEqual(1);
     });
 
     it('should call endGame() if the currentHand is the dealers', function(){

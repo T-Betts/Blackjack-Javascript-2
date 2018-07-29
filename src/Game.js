@@ -1,5 +1,5 @@
 function Game(deckCount, playerCount, pack = new Pack(deckCount)){
-  this.currentHand = 0
+  this.currentHandIndex = 0
   this.hands = []
   this.results = []
   this.playerCount = playerCount
@@ -57,20 +57,20 @@ Game.prototype.handStatus = function (hand) {
 };
 
 Game.prototype.hit = function () {
-  if (this.handScore(this.hands[this.currentHand]) > 21) {
+  if (this.handScore(this.hands[this.currentHandIndex]) > 21) {
     throw 'Hand is bust'
-  } else if (this.handScore(this.hands[this.currentHand]) === 21) {
+  } else if (this.handScore(this.hands[this.currentHandIndex]) === 21) {
     throw 'Hand score is 21'
   } else {
-    this.hands[this.currentHand].push(this.pack.remainingCards().pop());
+    this.hands[this.currentHandIndex].push(this.pack.remainingCards().pop());
   }
 };
 
 Game.prototype.stand = function () {
-  if (this.currentHand === this.hands.length - 1) {
+  if (this.currentHandIndex === this.hands.length - 1) {
     return this.endGame();
   } else {
-    this.currentHand++
+    this.currentHandIndex++
   }
 };
 
@@ -90,18 +90,17 @@ Game.prototype.handResult = function (hand) {
 };
 
 Game.prototype.split = function () {
-  var hand = this.hands[this.currentHand]
-  var handIndex = this.currentHand
+  var hand = this.hands[this.currentHandIndex]
   if (this.splittable(hand)) {
     var oneCardHands = [];
     for (var index = 0; index < hand.length; index += 1) {
         card = hand.slice(index, index + 1);
         oneCardHands.push(card);
     }
-    this.hands[handIndex] = oneCardHands[0]
-    this.hands.splice(handIndex + 1, 0, oneCardHands[1])
-    this.hands[handIndex].push(this.pack.remainingCards().pop());
-    this.hands[handIndex + 1].push(this.pack.remainingCards().pop());
+    this.hands[this.currentHandIndex] = oneCardHands[0]
+    this.hands.splice(this.currentHandIndex + 1, 0, oneCardHands[1])
+    this.hands[this.currentHandIndex].push(this.pack.remainingCards().pop());
+    this.hands[this.currentHandIndex + 1].push(this.pack.remainingCards().pop());
   } else {
     throw 'Cannot split hand'
   }
