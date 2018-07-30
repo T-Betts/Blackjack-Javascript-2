@@ -1,6 +1,7 @@
 describe('Game', function(){
   let singleDeckPackDouble;
   let onePlayerOneDeckGame;
+  let onePlayerSplittableHandGame;
 
   beforeEach(function(){
     var testPack = [];
@@ -15,6 +16,8 @@ describe('Game', function(){
     singleDeckPackDouble.shuffle.and.returnValue(testPack);
     singleDeckPackDouble.remainingCards.and.returnValue(testPack);
     onePlayerOneDeckGame = new Game(1, 1, singleDeckPackDouble);
+    onePlayerSplittableHandGame = new Game(1, 1, singleDeckPackDouble)
+    onePlayerSplittableHandGame.hands[0].push('6c', '6s')
   });
 
   describe('#deal', function(){
@@ -147,16 +150,14 @@ describe('Game', function(){
 
   describe('#split', function(){
     it('it should split a hand into two new hands and add them to hands array', function(){
-      onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      onePlayerOneDeckGame.split();
-      expect(onePlayerOneDeckGame.hands.length).toEqual(3);
+      onePlayerSplittableHandGame.split();
+      expect(onePlayerSplittableHandGame.hands.length).toEqual(3);
     });
 
     it('should deal one card to each new hand', function(){
-      onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      onePlayerOneDeckGame.split();
-      expect(onePlayerOneDeckGame.hands[0].length).toEqual(2);
-      expect(onePlayerOneDeckGame.hands[1].length).toEqual(2);
+      onePlayerSplittableHandGame.split();
+      expect(onePlayerSplittableHandGame.hands[0].length).toEqual(2);
+      expect(onePlayerSplittableHandGame.hands[1].length).toEqual(2);
     });
 
     it('can only be called on a splittable hand', function(){
@@ -167,8 +168,7 @@ describe('Game', function(){
 
   describe('#splittable', function(){
     it('should return true if the hand can be split', function(){
-      onePlayerOneDeckGame.hands[0].push('6c', '6s');
-      expect(onePlayerOneDeckGame.splittable(onePlayerOneDeckGame.hands[0])).toBe(true);
+      expect(onePlayerSplittableHandGame.splittable(onePlayerSplittableHandGame.hands[0])).toBe(true);
     })
 
     it('should return false if the hand cannot be split', function(){
