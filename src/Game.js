@@ -1,7 +1,6 @@
 function Game(deckCount, playerCount, pack = new Pack(deckCount)){
   this.currentHandIndex = 0
   this.hands = []
-  this.results = []
   this.playerCount = playerCount
   this.deckCount = deckCount
   this.pack = pack
@@ -9,7 +8,7 @@ function Game(deckCount, playerCount, pack = new Pack(deckCount)){
     this.hands.push([])
   }
   this.dealerHand = this.hands[this.hands.length - 1]
-  this.cardValues = {
+  this.faceCardValues = {
     'A': 1,
     'K': 10,
     'Q': 10,
@@ -35,7 +34,7 @@ Game.prototype.handScore = function (hand) {
   var score = 0
   for (var i = 0; i < hand.length; i++) {
     if (isNaN(hand[i][0])) {
-      score += this.cardValues[hand[i][0]]
+      score += this.faceCardValues[hand[i][0]]
     } else {
       score += parseInt(hand[i][0])
     }
@@ -111,6 +110,7 @@ Game.prototype.splittable = function (hand) {
 };
 
 Game.prototype.endGame = function () {
+  this.results = []
   for (var i = 0; i < this.hands.length - 1; i++) {
     this.results.push(this.handResult(this.hands[i]))
   }
