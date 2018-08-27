@@ -1,0 +1,28 @@
+{
+  "name": "blackjack-javascript-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/T-Betts/Blackjack-Javascript-2.git"
+  },
+  "author": "Tom Betts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/T-Betts/Blackjack-Javascript-2/issues"
+  },
+  "homepage": "https://github.com/T-Betts/Blackjack-Javascript-2#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "express": "^4.16.3",
+    "mocha": "^5.2.0",
+    "zombie": "^6.1.3"
+  }
+}
